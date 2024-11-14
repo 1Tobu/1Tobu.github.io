@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-    <title>Bewertungs-App</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewertungsseite</title>
+    <link rel="stylesheet" href="src/styles/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
 <div id="app">
-    <rating></rating>
+    <h1>Bewerte Personen</h1>
+    <div class="rating-form">
+        <input v-model="newName" placeholder="Name der Person" />
+        <input v-model.number="newRating" type="number" placeholder="Bewertung (1-5)" min="1" max="5" />
+        <button @click="addRating">Bewertung hinzufügen</button>
+    </div>
+    <div class="ratings-list">
+        <h2>Bewertungen</h2>
+        <ul>
+            <li v-for="(rating, index) in ratings" :key="index">
+                <strong>{{ rating.name }}</strong>: {{ rating.stars }} Sterne
+            </li>
+        </ul>
+    </div>
 </div>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script src="js/app.js"></script>
+<script src="src/js/app.js"></script>
 </body>
 </html>
