@@ -1,1 +1,19 @@
-INDEX PAGE
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="module">
+    import { createApp } from 'vue'
+    import MyComponent from './my-component.js'
+
+    createApp(MyComponent).mount('#app')
+</script>
+</body>
+</html>
