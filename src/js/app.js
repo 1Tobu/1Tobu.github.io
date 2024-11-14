@@ -1,9 +1,9 @@
 import { createApp } from 'vue';
-import Header from './components/Header.vue';
-import RatingForm from './components/RatingForm.vue';
-import RatingsList from './components/RatingsList.vue';
-import LoginModal from './components/LoginModal.vue';
-import RegisterModal from './components/RegisterModal.vue';
+import Header from './src/components/Header.vue';
+import RatingForm from './src/components/RatingForm.vue';
+import RatingsList from './src/components/RatingsList.vue';
+import LoginModal from './src/components/LoginModal.vue';
+import RegisterModal from './src/components/RegisterModal.vue';
 
 createApp({
     components: {
