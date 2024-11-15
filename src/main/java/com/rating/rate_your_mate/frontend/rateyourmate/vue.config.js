@@ -1,5 +1,4 @@
-module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/1tobu.github.io/'
-    : '/'
-}
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  publicPath: '/1Tobu.github.io/'
+})
