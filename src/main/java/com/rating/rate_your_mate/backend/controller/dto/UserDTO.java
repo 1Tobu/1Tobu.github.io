@@ -6,4 +6,7 @@ public record UserDTO(String username, String password, String email) {
     public User from(UserDTO userDTO) {
         return new User(userDTO.username, userDTO.password, userDTO.email);
     }
+    public UserDTO from(User user) {
+        return new UserDTO(user.getUsername(), user.getPassword(), user.getEmail());
+    }
 }

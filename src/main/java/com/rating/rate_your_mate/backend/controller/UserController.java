@@ -6,12 +6,16 @@ import com.rating.rate_your_mate.backend.repository.entity.User;
 import com.rating.rate_your_mate.backend.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import org.mockito.internal.exceptions.ExceptionIncludingMockitoWarnings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static java.lang.String.format;
 
 @RestController
 @RequestMapping("/rym/users")
@@ -21,13 +25,37 @@ public class UserController {
     private final UserService service;
 
     @GetMapping
-    public List<User> getUsers() {
-        return service.getUsers();
+    public List<UserDTO> getUsers() {
+        return service.getUsers().stream()
+                .map(this::from)
+                .toList();
+    }
+
+    @GetMapping("/{id}")
+    public UserDTO getUser(@PathVariable("id") Long id) throws Exception {
+        var userOptional = service.getUser(id);
+        return userOptional
+                .map(this::from)
+                .orElseThrow(() -> new Exception(format("User not found with id: %d", id)));
     }
 
     @PostMapping("/save")
-    public User addUser(@RequestBody User user) {
-        return service.addUser(user);
+    public UserDTO addUser(@RequestBody UserDTO userDTO) {
+        var user = service.addUser(from(userDTO));
+        return from(user);
+    }
+
+
+    @PutMapping("/update/{id}")
+    public UserDTO updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userDTO) {
+        //TODO: Add update method
+        var user = service.addUser(from(userDTO));
+        return from(user);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteUser(@PathVariable("id") Long id) {
+        return service.deleteUser(id);
     }
 
     @GetMapping("/check-email")
@@ -51,5 +79,13 @@ public class UserController {
         var user = userDTO.from(userDTO);
         service.registerUser(user);
         return ResponseEntity.ok("Benutzer erfolgreich registriert!");
+    }
+
+    private User from(UserDTO userDTO) {
+        return new User(userDTO.username(), userDTO.password(), userDTO.email());
+    }
+
+    private UserDTO from(User user) {
+        return new UserDTO(user.getUsername(), user.getPassword(), user.getEmail());
     }
 }
