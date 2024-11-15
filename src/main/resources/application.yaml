@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: ${JDBC_URL:jdbc:mariadb://localhost:3306/rateyourmate}
+    username: ${JDBC_USER:root}
+    password: ${JDBC_PASSWORD:1234}
+    driverClassName: org.mariadb.jdbc.Driver
