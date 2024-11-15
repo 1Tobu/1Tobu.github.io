@@ -1,13 +1,15 @@
 <template>
-    <Header></Header>
+    <User />
+
     <router-view/>
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
+import User from '@/components/User.vue'
 export default {
+    name: 'App',
     components: {
-        Header
+        User
     }
 }
 </script>
