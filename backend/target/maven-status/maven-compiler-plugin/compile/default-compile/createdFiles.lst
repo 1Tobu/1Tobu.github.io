@@ -1,0 +1,6 @@
+com\rating\rate_your_mate\repository\UserRepository.class
+com\rating\rate_your_mate\repository\entity\User.class
+com\rating\rate_your_mate\controller\dto\UserDTO.class
+com\rating\rate_your_mate\controller\UserController.class
+com\rating\rate_your_mate\App.class
+com\rating\rate_your_mate\service\UserService.class
